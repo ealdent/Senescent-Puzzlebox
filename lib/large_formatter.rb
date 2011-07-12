@@ -1,6 +1,6 @@
 class LargeFormatter
   attr_reader :puzzlebox, :per_layer
-  def initialize(puzzlebox, debug=false)
+  def initialize(puzzlebox, debug=true)
     @puzzlebox = puzzlebox
     @debug = debug
     @per_layer = (puzzlebox.side**0.5).ceil

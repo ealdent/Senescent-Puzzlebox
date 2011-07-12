@@ -2,7 +2,7 @@ class Formatter
   attr_reader :puzzlebox
   attr_accessor :debug
   
-  def initialize(puzzlebox, debug=false)
+  def initialize(puzzlebox, debug=true)
     @puzzlebox = puzzlebox
     @debug = debug
   end
