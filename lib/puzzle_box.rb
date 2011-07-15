@@ -24,6 +24,18 @@ class PuzzleBox
     end
     solved
   end
+
+  def good_points
+    score = 0
+    0.upto(@side-1) do |x|
+      0.upto(@side-1) do |y|
+        0.upto(@side-1) do |z|
+          score += 1 if points[x][y][z] || goal == [x,y,z]
+        end
+      end
+    end
+    score
+  end
   
   #all points surrounding the goal point are threatened
   def partially_solved?
