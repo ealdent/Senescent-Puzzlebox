@@ -1,3 +1,4 @@
+# Technically this should be called "Greedy Brute Force Solver"
 require File.join(File.dirname(__FILE__), 'puzzle_box')
 
 class BruteForceSolver
