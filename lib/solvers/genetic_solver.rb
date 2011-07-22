@@ -1,6 +1,6 @@
-require File.join(File.dirname(__FILE__), 'solver_gene')
+require File.join(File.dirname(__FILE__), 'genetic_solver_gene')
 
-class Solver
+class GeneticSolver
   MUTATION_RATE = 0.025
 
   attr_reader :x, :y, :z, :side, :limit, :population_size, :population, :current_generation

@@ -16,3 +16,20 @@ restart
   
 create <x>, <y>, <z>, <side>
   Creates a puzzle with a goal at (x,y,z) on a box with dimensions <side> x <side> x <side>
+
+
+Brute Force Solver
+------------------
+
+Run: `irb -r './lib/brute_force_solver.rb'`
+
+`bfs = BruteForceSolver.new <x>, <y>, <z>, <side>`
+
+`bfs.solve <x>, <y>, <z>`
+
+In the solve method, you choose a starting x, y, z to begin the brute force solution process.
+This can be any occupiable square.  The solution process will continue until one has been
+found or there are no available spaces to place a piece.  If the solver fails, start with a
+new starting location, as this method is deterministic.
+
+

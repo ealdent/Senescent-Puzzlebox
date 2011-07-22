@@ -21,7 +21,7 @@ class LargeFormatter
       end
       output += "\n"
     end
-    output += "moves: #{puzzlebox.occupied.empty? ? 'none' : puzzlebox.occupied.collect {|p| "(#{p[0]}, #{p[1]}, #{p[2]})"}.join(', ')}\n"
+    output += "moves (#{puzzlebox.occupied.size}): #{puzzlebox.occupied.empty? ? 'none' : puzzlebox.occupied.collect {|p| "(#{p[0]}, #{p[1]}, #{p[2]})"}.join(', ')}\n"
     output += "\t***Solved!***\n" if puzzlebox.solved?
     output += "\t**Unlocked!**\n" if puzzlebox.partially_solved?
     output

@@ -22,7 +22,7 @@ class Formatter
   end
   
   def x_axis_label
-    axis = '|'
+    axis = ' |'
     0.upto(puzzlebox.side - 1) do |i|
       axis += (i%10 == 0 && i > 0) ? "*|" : "#{i%10}|"
     end
@@ -30,8 +30,8 @@ class Formatter
   end
   
   def rowify(row, i, j)
-    output = (' ' * (j - (j.to_s.length - 1))) + "#{j}\\"
-    row.each_with_index {|space, k| output += "#{squarify(k, j, i)}\\"}
+    output = "#{j}|"
+    row.each_with_index {|space, k| output += "#{squarify(k, j, i)}|"}
     output += " [#{i}]" if (puzzlebox.side/2 == j)
     output
   end
