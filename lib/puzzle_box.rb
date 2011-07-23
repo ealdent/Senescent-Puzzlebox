@@ -144,6 +144,23 @@ class PuzzleBox
     @occupied = []    
     self
   end
+
+  def adjacency_matrix
+    matrix = []
+    (@side ** 3).times { matrix << [0] * (@side ** 3) }
+
+    (0...@side).each do |x|
+      (0...@side).each do |y|
+        (0...@side).each do |z|
+          in_every_direction(x, y, z, @side).each do |threat|
+            matrix[z * @side * @side + y * @side + x][threat[0] + threat[1] * @side + threat[2] * @side * @side] = 1
+          end
+        end
+      end
+    end
+
+    matrix
+  end
   
 private
   def self.vectors

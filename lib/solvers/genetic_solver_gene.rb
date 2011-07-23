@@ -1,6 +1,6 @@
-require File.join(File.dirname(__FILE__), 'puzzle_box')
+require File.join(File.dirname(__FILE__), '..', 'puzzle_box')
 
-class SolverGene
+class GeneticSolverGene
   attr_accessor :genes, :fitness
   attr_reader :x, :y, :z, :side, :limit, :box
 
