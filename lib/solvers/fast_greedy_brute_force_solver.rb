@@ -5,12 +5,12 @@ class FastGreedyBruteForceSolver < Solver
   def solve(starting_x = nil, starting_y = nil, starting_z = nil, options = {})
     @box.reset!
 
-    adjacency_matrix = @box.adjacency_matrix.map { |row| Vector.elements(row) }
+    @adjacency_matrix ||= @box.adjacency_matrix.map { |row| Vector.elements(row) }
     goal_idx = compute_index(@x, @y, @z)
 
     if starting_x && starting_y && starting_z
       if @box.occupy(starting_x, starting_y, starting_z)
-        running_vector = adjacency_matrix[compute_index(starting_x, starting_y, starting_z)]
+        running_vector = @adjacency_matrix[compute_index(starting_x, starting_y, starting_z)]
       else
         raise "Starting square occupied."
       end
@@ -24,9 +24,9 @@ class FastGreedyBruteForceSolver < Solver
       (@side ** 3).times do |row_idx|
         next if row_idx == goal_idx
         next if running_vector[row_idx] > 0
-        next if adjacency_matrix[goal_idx][row_idx] > 0
+        next if @adjacency_matrix[goal_idx][row_idx] > 0
 
-        score = vector_val(vector_or(running_vector, adjacency_matrix[row_idx]))
+        score = vector_val(vector_or(running_vector, @adjacency_matrix[row_idx]))
         if score > best_score
           best_idx = row_idx
           best_score = score
@@ -40,7 +40,7 @@ class FastGreedyBruteForceSolver < Solver
           puts "*** #{running_vector[best_idx]}"
           puts "**************************************************************"
         end
-        running_vector = vector_or(running_vector, adjacency_matrix[best_idx])
+        running_vector = vector_or(running_vector, @adjacency_matrix[best_idx])
         puts "Moved to (#{decompose_index(best_idx).join(', ')}) (#{vector_val(running_vector)}/#{@side ** 3})."
         puts running_vector if options[:verbose]
 
