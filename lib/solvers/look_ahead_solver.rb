@@ -28,16 +28,22 @@ class LookAheadSolver < Solver
 
         tmp_vector = vector_or(running_vector, @adjacency_matrix[row_idx])
         score = vector_val(tmp_vector)
-        (@side ** 3).times do |look_ahead_row_idx|
+        # (@side ** 3).times do |look_ahead_row_idx|
+        100.times do |i|
+          look_ahead_row_idx = rand(@side ** 3)
           next if look_ahead_row_idx == goal_idx
           next if look_ahead_row_idx == row_idx
           next if running_vector[look_ahead_row_idx] > 0
           next if @adjacency_matrix[goal_idx][look_ahead_row_idx] > 0
-          score += vector_val(vector_or(tmp_vector, @adjacency_matrix[look_ahead_row_idx]))
-          if score > best_score
+          look_ahead_score = score + vector_val(vector_or(tmp_vector, @adjacency_matrix[look_ahead_row_idx]))
+          if look_ahead_score > best_score
             best_idx = row_idx
-            best_score = score
+            best_score = look_ahead_score
           end
+        end
+        if score > best_score
+          best_idx = row_idx
+          best_score = score
         end
       end
 
